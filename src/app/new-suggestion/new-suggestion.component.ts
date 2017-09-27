@@ -7,12 +7,21 @@ import { SuggestionService } from '../shared/suggestion.service';
 })
 export class NewSuggestionComponent implements OnInit {
 
+  private suggestion: any;
+
   constructor(private suggestionService: SuggestionService) {
     this.suggestionService = suggestionService;
+    this.suggestion = {};
    }
 
   ngOnInit() {
-    this.suggestionService.addSuggestion();
+    // this.suggestionService.addSuggestion();
   }
+
+  submitData() {
+    this.suggestionService.addSuggestion(this.suggestion);
+  }
+
+
 
 }

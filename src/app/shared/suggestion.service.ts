@@ -10,8 +10,8 @@ export class SuggestionService {
     this.suggestions = af.list('/suggestions');
   }
 
-  addSuggestion() {
-    this.suggestions.push({ message: 'test'});
+  addSuggestion(suggestion: any) {
+    this.suggestions.push(suggestion);
   }
 
 }
