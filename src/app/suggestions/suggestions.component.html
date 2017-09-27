@@ -1,8 +1,14 @@
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let suggestion of this.suggestions | async">
-    <p>Suggestion: {{suggestion.suggestionText}}</p>
-    <p>Details: {{suggestion.details}}</p>
-    <p>Submitter: {{suggestion.name}}</p>
-    <p>Submitter's Email Address: {{suggestion.email}}</p>
-  </li>
-</ul>
+<div class="new-suggestion container text-left">
+    <a class="btn" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> go back</a>
+    <h1 class="text-center">Endorse A Suggestion</h1>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let suggestion of this.suggestions | async">
+      <p>Suggestion: {{suggestion.suggestionText}}</p>
+      <p>Details: {{suggestion.details}}</p>
+      <p>Submitter: {{suggestion.name}}</p>
+      <p>Submitter's Email Address: {{suggestion.email}}</p>
+      <button title="Endorse"><span class="fa fa-heart"></span></button>
+      <button title="Delete"><span class="fa fa-trash"></span></button>
+    </li>
+  </ul>
+</div>
