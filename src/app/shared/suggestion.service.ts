@@ -14,4 +14,7 @@ export class SuggestionService {
     this.suggestions.push(suggestion);
   }
 
+  getSuggestions() {
+    return this.suggestions;
+  }
 }

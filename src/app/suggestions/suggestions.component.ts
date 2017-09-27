@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SuggestionService } from '../shared/suggestion.service';
 
 @Component({
   selector: 'app-suggestions',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuggestionsComponent implements OnInit {
 
-  constructor() { }
+  private suggestions: any;
+  constructor(private suggestionService: SuggestionService) {
+    this.suggestionService = suggestionService;
+    this.suggestions = {};
+   }
 
   ngOnInit() {
+    this.suggestions = this.suggestionService.getSuggestions();
+    console.log(this.suggestions);
   }
 
 }

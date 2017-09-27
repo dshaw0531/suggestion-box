@@ -1,3 +1,8 @@
-<p>
-  suggestions works!
-</p>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let suggestion of this.suggestions | async">
+    <p>Suggestion: {{suggestion.suggestionText}}</p>
+    <p>Details: {{suggestion.details}}</p>
+    <p>Submitter: {{suggestion.name}}</p>
+    <p>Submitter's Email Address: {{suggestion.email}}</p>
+  </li>
+</ul>
