@@ -1,8 +1,12 @@
-h1 {
-  font-family: 'Bree Serif', serif;
-  font-weight: bold;
-  font-size: 60px;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  background-color: #a3cc63;
+div{
+  padding-left: 0;
+  padding-right: 0;
+  h1 {
+    font-family: 'Bree Serif', serif;
+    font-weight: bold;
+    font-size: 60px;
+    margin-bottom: 25px;
+    background-color: #a3cc63;
+    padding: 0 10px 10px 10px;
+  }
 }

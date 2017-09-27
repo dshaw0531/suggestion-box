@@ -18,5 +18,8 @@ div{
     .btn-info {
         font-size: 40px;
         background-color: #257e6b;
+        &.new{
+            font-size: 30px;
+        }
     }
 }
