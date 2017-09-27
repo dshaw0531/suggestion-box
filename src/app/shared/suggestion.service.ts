@@ -17,4 +17,8 @@ export class SuggestionService {
   getSuggestions() {
     return this.suggestions;
   }
+
+  deleteSuggestion(suggestionKey: any) {
+    this.suggestions.remove(suggestionKey);
+  }
 }

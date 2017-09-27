@@ -8,7 +8,7 @@
       <p>Submitter: {{suggestion.name}}</p>
       <p>Submitter's Email Address: {{suggestion.email}}</p>
       <button title="Endorse"><span class="fa fa-heart"></span></button>
-      <button title="Delete"><span class="fa fa-trash"></span></button>
+      <button title="Delete" (click)="deleteSuggestion(suggestion.$key)"><span class="fa fa-trash"></span></button>
     </li>
   </ul>
 </div>

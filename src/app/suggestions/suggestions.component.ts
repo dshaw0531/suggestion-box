@@ -19,4 +19,7 @@ export class SuggestionsComponent implements OnInit {
     console.log(this.suggestions);
   }
 
+  deleteSuggestion(suggestionKey: any) {
+    this.suggestionService.deleteSuggestion(suggestionKey);
+  }
 }
