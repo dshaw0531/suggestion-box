@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Relias Employee Suggestion Box
+  </h1>
+</div>
+
+<!-- Added from firebase instructions - will probably need to move -->
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.$value}}
+  </li>
+</ul>
+
