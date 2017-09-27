@@ -5,8 +5,8 @@ div{
         font-size: 22px;
         text-align: left;
     }
-    ul, p, button{
-        margin-bottom: 50px;
+    ul, p, .btn-info{
+        margin-bottom: 30px;
     }
     p{
         font-size: 20px;
@@ -14,5 +14,9 @@ div{
     h2{
         font-weight: bold;
         margin-bottom: 20px;
+    }
+    .btn-info {
+        font-size: 40px;
+        background-color: #257e6b;
     }
 }
