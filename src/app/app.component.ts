@@ -10,6 +10,5 @@ export class AppComponent {
   title = 'app';
   items: FirebaseListObservable<any[]>;
   constructor(db: AngularFireDatabase) {
-
   }
 }

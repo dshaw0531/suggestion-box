@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NewSuggestionComponent } from './new-suggestion/new-suggestion.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
+import { SuggestionService } from './shared/suggestion.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,7 +37,9 @@ const appRoutes: Routes = [
     )
     // AngularFireAuthModule  // May use later - imports firebase/auth, only needed for auth features
   ],
-  providers: [],
+  providers: [
+    SuggestionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
