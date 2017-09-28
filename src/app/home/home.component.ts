@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   @ViewChild('loginModal') loginModal: ElementRef;
   openModalRef: NgbModalRef;
-
+  public loginFailed = false;
   public email: string;
   public password: string;
 
@@ -28,9 +28,15 @@ export class HomeComponent implements OnInit {
 
   login() {
     this.authService.login(this.email, this.password);
-    this.email = this.password = '';
-    this.openModalRef.close();
-    this.router.navigate(['./suggestions']);
+    this.authService.user.subscribe(u => {
+      if (u) {
+        this.email = this.password = '';
+        this.openModalRef.close();
+        this.router.navigate(['./suggestions']);
+      } else {
+        this.loginFailed = true;
+      }
+    });
   }
 
   logout() {

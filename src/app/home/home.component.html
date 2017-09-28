@@ -19,6 +19,7 @@
         <h4 class="modal-title">Login</h4> 
       </div>
       <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="loginFailed">Login Failed</div>
         <div class="row">
           <div class="form-group col-md-7 mx-auto mb-5">
             <label for="exampleTextarea">Email Address:</label>
