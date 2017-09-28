@@ -14,6 +14,7 @@ export class SuggestionsComponent implements OnInit {
   public suggestions: any;
   public success = false;
   public endorsement: any;
+  public duplicateEndorsement = false;
   openModalRef: NgbModalRef;
   currentSuggestion: any;
 
@@ -39,11 +40,31 @@ export class SuggestionsComponent implements OnInit {
   }
 
   openEndorseModal(endorseItem: any): void {
+    this.endorsement.name = '';
+    this.endorsement.email = '';
     this.currentSuggestion = endorseItem;
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
   }
 
-  deleteSuggestion(suggestionKey: any) {
-    this.suggestionService.deleteSuggestion(suggestionKey);
+  deleteSuggestion() {
+    this.suggestionService.deleteSuggestion(this.currentSuggestion.$key);
+  }
+
+  endorseSuggestion() {
+    this.duplicateEndorsement = false;
+    if (!this.currentSuggestion.endorsements) {
+      this.currentSuggestion.endorsements = new Array();
+    } else {
+      this.currentSuggestion.endorsements.forEach(element => {
+        if (element.email === this.endorsement.email) {
+          this.duplicateEndorsement = true;
+        }
+      });
+    }
+
+    if (!this.duplicateEndorsement) {
+      this.currentSuggestion.endorsements.push(this.endorsement);
+      this.suggestionService.endorseSuggestion(this.currentSuggestion);
+    }
   }
 }

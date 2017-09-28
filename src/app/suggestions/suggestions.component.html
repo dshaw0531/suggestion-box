@@ -7,7 +7,7 @@
       <b>{{suggestion.suggestionText}}</b>
       <p><i>{{suggestion.details}}</i></p>
       <p>Submitter: {{suggestion.name}}</p>
-      <p>Submitter's Email Address: {{suggestion.email}}</p>
+      <p>Submitter's Email Address: {{suggestion.email}}</p>{{suggestion.endorsements ? suggestion.endorsements.length : 0}}
       <button title="Endorse" (click)="openEndorseModal(suggestion)"><span class="fa fa-heart"></span></button>
       <button title="Delete" (click)="openDeleteModal(suggestion)"><span class="fa fa-trash"></span></button>
     </li>
@@ -28,7 +28,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-      <button type="button" name="deleteButton" class="btn btn-sm btn-modal-primary" (click)="deleteSuggestion(this.currentSuggestion.$key);this.openModalRef.close();">Delete</button>
+      <button type="button" name="deleteButton" class="btn btn-sm btn-modal-primary" (click)="deleteSuggestion();this.openModalRef.close();">Delete</button>
     </div>
   </div>
 </ng-template>
@@ -59,7 +59,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-        <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion(this.currentSuggestion);this.openModalRef.close();">Endorse</button>
+        <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion();this.openModalRef.close();">Endorse</button>
       </div>
     </div>
   </ng-template>
