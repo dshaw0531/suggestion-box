@@ -27,7 +27,7 @@ export class NewSuggestionComponent {
     this.validateForm();
     if (!this.emptyTextError) {
       this.suggestionService.addSuggestion(this.suggestion);
-      this.router.navigate(['./home']);
+      this.router.navigate(['./suggestions']);
     }
   }
 
