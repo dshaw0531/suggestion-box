@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,10 @@ export class HomeComponent implements OnInit {
   @ViewChild('loginModal') loginModal: ElementRef;
   openModalRef: NgbModalRef;
 
-  email: string;
-  password: string;
+  public email: string;
+  public password: string;
 
-  constructor(public authService: AuthService, public modalService: NgbModal) {}
+  constructor(public authService: AuthService, public modalService: NgbModal, public router: Router) {}
 
   openLoginModal(): void {
     this.openModalRef = this.modalService.open(this.loginModal, { windowClass: 'modal-wrapper-sm' });
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit {
   login() {
     this.authService.login(this.email, this.password);
     this.email = this.password = '';
+    this.openModalRef.close();
+    this.router.navigate(['./suggestions']);
   }
 
   logout() {

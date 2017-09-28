@@ -2,14 +2,9 @@
 <div class="container-fluid">
   <h1 class="text-center">
     Relias Employee Suggestion Box
+    <button *ngIf="authService.user | async" (click)="logout()" class="btn btn-md" style="margin-left:5%;">Logout</button>
   </h1>
   <router-outlet></router-outlet>
-  <!-- Added from firebase instructions - will probably need to move -->
-  <ul>
-    <li class="text" *ngFor="let item of items | async">
-      {{item.$value}}
-    </li>
-  </ul>
 </div>
 
 

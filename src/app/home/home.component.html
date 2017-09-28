@@ -10,37 +10,33 @@
   <p><i>Don't see what you're looking for in the Existing Suggestions page? Create your own with the link below!</i></p>
   <button routerLink="../new-suggestion" class="btn btn-info new"><i class="fa fa-plus" style="padding-right:5px;"></i> New Suggestion</button>
   <div class="row">
-    <button title="Login" (click)="openLoginModal()"><i class="fa fa-sign-in" aria-hidden="true"></i> Admin Login</button>
+    <button *ngIf="!(authService.user | async)" title="Login" (click)="openLoginModal()"><i class="fa fa-sign-in" aria-hidden="true"></i> Admin Login</button>
   </div>
 </div>
 <ng-template #loginModal let-c="close" class="modal-custom-sm">
     <div>
       <div class="modal-header">
-        <h4 class="modal-title">Endorse</h4> 
-      </div>
-      <div class="alert alert-danger" *ngIf="duplicateEndorsement">
-        You can't endorse a suggestion twice
+        <h4 class="modal-title">Login</h4> 
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="form-group col-md-7 mx-auto mb-5">
-            <label for="exampleTextarea">My name is:</label>
+            <label for="exampleTextarea">Email Address:</label>
             <input type="text" class="form-control" id="exampleTextarea" rows="3" 
-            [(ngModel)]="endorsement.name" name="name" required/>
+             [(ngModel)]="email" name="name" required/>
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-7 mx-auto mb-5">
-              <label for="exampleTextarea">My email is:</label>
-              <input type="text" class="form-control" id="exampleTextarea" rows="3" 
-              [(ngModel)]="endorsement.email" name="email" required/>
-              <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
+              <label for="exampleTextarea">Password:</label>
+              <input type="password" class="form-control" id="exampleTextarea" rows="3" 
+               [(ngModel)]="password" name="email" required/>
             </div>
           </div>
       </div>
       <div class="modal-footer">
         <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-        <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion()">Endorse</button>
+        <button type="button" name="loginButton" class="btn btn-sm btn-modal-primary" (click)="login()">Login</button>
       </div>
     </div>
   </ng-template>

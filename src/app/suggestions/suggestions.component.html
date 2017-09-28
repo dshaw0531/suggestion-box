@@ -20,7 +20,7 @@
       <b>{{suggestion.suggestionText}}</b>
       <p><font size="2pt"><i>{{suggestion.details}}</i></font></p>
       <p><font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
-      <button title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
+      <button *ngIf="authService.user | async" title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
       <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt"><span class="fa fa-heart"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
       </p>
     </li>

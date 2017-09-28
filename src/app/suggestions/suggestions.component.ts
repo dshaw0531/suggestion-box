@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SuggestionService } from '../shared/suggestion.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-suggestions',
@@ -20,7 +21,8 @@ export class SuggestionsComponent implements OnInit {
   openModalRef: NgbModalRef;
   currentSuggestion: any;
 
-  constructor(private suggestionService: SuggestionService, public modalService: NgbModal, private route: ActivatedRoute) {
+  constructor(private suggestionService: SuggestionService, public modalService: NgbModal,
+      private route: ActivatedRoute, private authService: AuthService) {
     this.suggestionService = suggestionService;
     this.suggestions = {};
     this.endorsement = {
@@ -34,6 +36,7 @@ export class SuggestionsComponent implements OnInit {
   ngOnInit() {
     this.suggestions = this.suggestionService.getSuggestions();
     this.success = this.route.snapshot.params['success'];
+    console.log(this.authService.user);
   }
 
   openDeleteModal(deleteItem: any): void {
