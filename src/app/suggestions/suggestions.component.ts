@@ -43,7 +43,16 @@ export class SuggestionsComponent implements OnInit {
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
   }
 
-  deleteSuggestion(suggestionKey: any) {
-    this.suggestionService.deleteSuggestion(suggestionKey);
+  deleteSuggestion() {
+    this.suggestionService.deleteSuggestion(this.currentSuggestion.$key);
+  }
+
+  endorseSuggestion() {
+    if (!this.currentSuggestion.endorsements) {
+      this.currentSuggestion.endorsements = new Array();
+    }
+
+    this.currentSuggestion.endorsements.push(this.endorsement);
+    this.suggestionService.endorseSuggestion(this.currentSuggestion);
   }
 }

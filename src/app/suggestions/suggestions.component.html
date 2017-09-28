@@ -28,7 +28,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-      <button type="button" name="deleteButton" class="btn btn-sm btn-modal-primary" (click)="deleteSuggestion(this.currentSuggestion.$key);this.openModalRef.close();">Delete</button>
+      <button type="button" name="deleteButton" class="btn btn-sm btn-modal-primary" (click)="deleteSuggestion();this.openModalRef.close();">Delete</button>
     </div>
   </div>
 </ng-template>
@@ -59,7 +59,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-        <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion(this.currentSuggestion);this.openModalRef.close();">Endorse</button>
+        <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion();this.openModalRef.close();">Endorse</button>
       </div>
     </div>
   </ng-template>
