@@ -5,6 +5,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 // import { AngularFireAuthModule } from 'angularfire2/auth';  // May use later - imports firebase/auth, only needed for auth features
 import { environment } from '../environments/environment';
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     // AngularFireAuthModule  // May use later - imports firebase/auth, only needed for auth features
   ],
   providers: [
-    SuggestionService
+    SuggestionService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
