@@ -9,7 +9,26 @@
       <p>Submitter: {{suggestion.name}}</p>
       <p>Submitter's Email Address: {{suggestion.email}}</p>
       <button title="Endorse"><span class="fa fa-heart"></span></button>
-      <button title="Delete" (click)="deleteSuggestion(suggestion.$key)"><span class="fa fa-trash"></span></button>
+      <button title="Delete" (click)="openDeleteModal(suggestion)"><span class="fa fa-trash"></span></button>
     </li>
   </ul>
 </div>
+<ng-template #confirmDeleteModal let-c="close">
+  <div class="modal-custom-sm">
+    <div class="modal-header" [ngClass]="{'d-flex justify-content-end': currentQuestion}">
+      <h4 class="modal-title" *ngIf="!currentQuestion">{{currentObjective?.name}}</h4> 
+      <button type="button"  class="btn-close" aria-label="Close" (click)="c()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <p><strong>Are you sure you want to delete this suggestion?</strong></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
+      <button type="button" name="deleteButton" class="btn btn-sm btn-modal-primary" (click)="deleteSuggestion(this.currentSuggestion.$key);this.openModalRef.close();">Delete</button>
+    </div>
+  </div>
+</ng-template>
