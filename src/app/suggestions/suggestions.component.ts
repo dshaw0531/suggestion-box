@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 export class SuggestionsComponent implements OnInit {
   @ViewChild('confirmDeleteModal') confirmDeleteModal: ElementRef;
   @ViewChild('endorseModal') endorseModal: ElementRef;
+  @ViewChild('viewEndorsementsModal') viewEndorsementsModal: ElementRef;
   public suggestions: any;
   public success = false;
   public invalidEmail = false;
@@ -51,6 +52,15 @@ export class SuggestionsComponent implements OnInit {
     this.invalidEmail = false;
     this.currentSuggestion = endorseItem;
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
+  }
+
+  openViewEndorsementsModal(endorseItem: any): void {
+    this.endorsement.name = '';
+    this.endorsement.email = '';
+    this.duplicateEndorsement = false;
+    this.invalidEmail = false;
+    this.currentSuggestion = endorseItem;
+    this.openModalRef = this.modalService.open(this.viewEndorsementsModal, { windowClass: 'modal-wrapper-sm' });
   }
 
   deleteSuggestion() {
