@@ -54,6 +54,4 @@ export class NewSuggestionComponent {
     return !string.replace(/\s/g, '').length;
   }
 
-
-
 }
