@@ -16,7 +16,7 @@
 <ng-template #confirmDeleteModal let-c="close">
   <div class="modal-custom-sm">
     <div class="modal-header">
-      <h4 class="modal-title"></h4> 
+      <h4 class="modal-title">Delete</h4> 
       <button type="button"  class="btn-close" aria-label="Close" (click)="c()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -35,10 +35,13 @@
 <ng-template #endorseModal let-c="close">
     <div class="modal-custom-sm">
       <div class="modal-header">
-        <h4 class="modal-title"></h4> 
+        <h4 class="modal-title">Endorse</h4> 
         <button type="button"  class="btn-close" aria-label="Close" (click)="c()">
           <span aria-hidden="true">&times;</span>
         </button>
+      </div>
+      <div class="alert alert-danger" *ngIf="duplicateEndorsement">
+        You can't endorse a suggestion twice
       </div>
       <div class="modal-body">
         <div class="row">

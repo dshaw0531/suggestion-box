@@ -43,6 +43,8 @@ export class SuggestionsComponent implements OnInit {
   openEndorseModal(endorseItem: any): void {
     this.endorsement.name = '';
     this.endorsement.email = '';
+    this.duplicateEndorsement = false;
+    this.invalidEmail = false;
     this.currentSuggestion = endorseItem;
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
   }
@@ -52,9 +54,6 @@ export class SuggestionsComponent implements OnInit {
   }
 
   endorseSuggestion() {
-    this.duplicateEndorsement = false;
-    this.invalidEmail = false;
-
     if (this.currentSuggestion.email === this.endorsement.email) {
       this.duplicateEndorsement = true;
     } else {
