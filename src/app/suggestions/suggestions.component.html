@@ -56,23 +56,29 @@
     </div>
     <div class="modal-body">
       <div class="row">
-        <div class="form-group col-md-7 mx-auto mb-5">
+        <div class="form-group col-md-11 mx-auto mb-5">
           <label for="exampleTextarea">My name is:</label>
           <input type="text" class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="endorsement.name" name="name" required/>
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-7 mx-auto mb-5">
+        <div class="form-group col-md-11 mx-auto mb-5">
           <label for="exampleTextarea">My email is:</label>
           <input type="text" class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="endorsement.email" name="email" required/>
           <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
         </div>
       </div>
+      <div class="row">
+        <div class="form-group col-md-11 mx-auto mb-5">
+          <label for="exampleTextarea">Comments:</label>
+          <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="endorsement.comments" name="comments"></textarea>
+        </div>
+      </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-      <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion()">Endorse</button>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
+    <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion()">Endorse</button>
   </div>
 </ng-template>
 <ng-template #viewEndorsementsModal let-c="close">
@@ -96,3 +102,4 @@
       <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Done</button>
     </div>
   </div>
+</ng-template>
