@@ -1,6 +1,6 @@
 <div class="new-suggestion container text-left">
-  <a class="btn" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a>
-  <h1 class="text-center">Add A Suggestion</h1>
+  <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back to Home</a>
+  <h1 class="text-center">Add a Suggestion</h1>
   <h1 class="alert alert-danger" *ngIf="emptyTextError">all input fields must have a value</h1>
   <form>
     <div class="row">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="row">
-      <button (click)="submitData()" class="mx-auto btn btn-primary">Submit</button>        
+      <button (click)="submitData()" class="btn btn-submit">Submit</button>
     </div>
   </form>
 </div>
