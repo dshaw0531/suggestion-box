@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { NewSuggestionComponent } from './new-suggestion/new-suggestion.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { SuggestionService } from './shared/suggestion.service';
+import { OrderByPipe } from './shared/order-by.pipe';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     NewSuggestionComponent,
-    SuggestionsComponent
+    SuggestionsComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
