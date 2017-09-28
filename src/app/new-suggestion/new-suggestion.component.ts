@@ -29,7 +29,7 @@ export class NewSuggestionComponent {
     this.validateEmail();
     if (!this.emptyTextError && !this.invalidEmail) {
       this.suggestionService.addSuggestion(this.suggestion);
-      this.router.navigate(['./home']);
+      this.router.navigate(['./suggestions']);
     }
   }
 
