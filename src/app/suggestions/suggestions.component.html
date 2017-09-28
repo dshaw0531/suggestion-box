@@ -5,11 +5,11 @@
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let suggestion of this.suggestions | async">
       <b>{{suggestion.suggestionText}}</b>
-      <p><i>{{suggestion.details}}</i></p>
-      <p>Submitter: {{suggestion.name}}</p>
-      <p>Submitter's Email Address: {{suggestion.email}}</p>{{suggestion.endorsements ? suggestion.endorsements.length : 0}}
-      <button title="Endorse" (click)="openEndorseModal(suggestion)"><span class="fa fa-heart"></span></button>
-      <button title="Delete" (click)="openDeleteModal(suggestion)"><span class="fa fa-trash"></span></button>
+      <p><font size="2pt"><i>{{suggestion.details}}</i></font></p>
+      <p><font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
+      <button title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
+      <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt"><span class="fa fa-heart"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
+      </p>
     </li>
   </ul>
 </div>
