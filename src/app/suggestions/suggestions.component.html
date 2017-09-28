@@ -24,7 +24,7 @@
       <p>
         <font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
         <button *ngIf="authService.user | async" title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
-        <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt"><span class="fa fa-heart"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
+        <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt;"><span class="fa fa-heart" style="color:#00a7a6"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
         <button *ngIf="authService.user | async" title="View Endorsements" (click)="openViewEndorsementsModal(suggestion)" style="float:right;"><span class="fa fa-eye"></span></button>
       </p>
     </li>
@@ -56,7 +56,7 @@
     </div>
       <div class="modal-body">
         <div class="row">
-          <div class="form-group col-md-7 mx-auto mb-5">
+          <div class="form-group col-md-11 mx-auto mb-5">
             <label for="exampleTextarea">My name is:</label>
             <input type="text" class="form-control" id="exampleTextarea" rows="3" 
             [(ngModel)]="endorsement.name" name="name" required/>
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-md-7 mx-auto mb-5">
+            <div class="form-group col-md-11 mx-auto mb-5">
               <label for="exampleTextarea">My email is:</label>
               <input type="text" class="form-control" id="exampleTextarea" rows="3" 
               [(ngModel)]="endorsement.email" name="email" required/>
@@ -93,9 +93,9 @@
       <div>
         <ul>
           <li *ngFor="let endorsement of endorsements">
-            {{ endorsement.name }}
-            {{ endorsement.email }}
-            <p><strong>{{ endorsement.comments }}</strong></p>
+            <strong>{{ endorsement.name }}</strong>
+            <i>({{ endorsement.email }})</i>
+            <p>{{ endorsement.comments }}</p>
           </li>
         </ul>
       </div>
