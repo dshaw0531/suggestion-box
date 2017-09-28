@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SuggestionService } from '../shared/suggestion.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-suggestions',
@@ -11,22 +12,26 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class SuggestionsComponent implements OnInit {
   @ViewChild('confirmDeleteModal') confirmDeleteModal: ElementRef;
   @ViewChild('endorseModal') endorseModal: ElementRef;
+  @ViewChild('viewEndorsementsModal') viewEndorsementsModal: ElementRef;
   public suggestions: any;
   public success = false;
   public invalidEmail = false;
   public nameEmpty = false;
   public endorsement: any;
+  public endorsements: any[];
   public duplicateEndorsement = false;
   public searchText: any;
   openModalRef: NgbModalRef;
   currentSuggestion: any;
 
-  constructor(private suggestionService: SuggestionService, public modalService: NgbModal, private route: ActivatedRoute) {
+  constructor(private suggestionService: SuggestionService, public modalService: NgbModal,
+      private route: ActivatedRoute, private authService: AuthService) {
     this.suggestionService = suggestionService;
     this.suggestions = {};
     this.endorsement = {
       name: '',
-      email: ''
+      email: '',
+      comments: ''
     };
 
     this.route = route;
@@ -45,11 +50,17 @@ export class SuggestionsComponent implements OnInit {
   openEndorseModal(endorseItem: any): void {
     this.endorsement.name = '';
     this.endorsement.email = '';
+    this.endorsement.comments = '';
     this.duplicateEndorsement = false;
     this.invalidEmail = false;
     this.nameEmpty = false;
     this.currentSuggestion = endorseItem;
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
+  }
+
+  openViewEndorsementsModal(endorseItem: any): void {
+    this.endorsements = endorseItem.endorsements;
+    this.openModalRef = this.modalService.open(this.viewEndorsementsModal, { windowClass: 'modal-wrapper-sm' });
   }
 
   deleteSuggestion() {

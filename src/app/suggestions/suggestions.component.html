@@ -18,10 +18,14 @@
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let suggestion of suggestions | orderBy | async | searchText:searchText">
       <b>{{suggestion.suggestionText}}</b>
-      <p><font size="2pt"><i>{{suggestion.details}}</i></font></p>
-      <p><font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
-      <button title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
-      <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt"><span class="fa fa-heart"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
+      <p>
+        <font size="2pt"><i>{{suggestion.details}}</i></font>
+      </p>
+      <p>
+        <font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
+        <button *ngIf="authService.user | async" title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
+        <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt"><span class="fa fa-heart"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
+        <button *ngIf="authService.user | async" title="View Endorsements" (click)="openViewEndorsementsModal(suggestion)" style="float:right;"><span class="fa fa-eye"></span></button>
       </p>
     </li>
   </ul>
@@ -29,7 +33,7 @@
 <ng-template #confirmDeleteModal let-c="close">
   <div class="modal-custom-sm">
     <div class="modal-header">
-      <h4 class="modal-title">Delete</h4> 
+      <h4 class="modal-title">Delete</h4>
     </div>
     <div class="modal-body">
       <div>
@@ -43,13 +47,13 @@
   </div>
 </ng-template>
 <ng-template #endorseModal let-c="close" class="modal-custom-sm">
-    <div>
-      <div class="modal-header">
-        <h4 class="modal-title">Endorse</h4> 
-      </div>
-      <div class="alert alert-danger" *ngIf="duplicateEndorsement">
-        You can't endorse a suggestion twice
-      </div>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title">Endorse</h4>
+    </div>
+    <div class="alert alert-danger" *ngIf="duplicateEndorsement">
+      You can't endorse a suggestion twice
+    </div>
       <div class="modal-body">
         <div class="row">
           <div class="form-group col-md-7 mx-auto mb-5">
@@ -67,10 +71,37 @@
               <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
             </div>
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-        <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion()">Endorse</button>
+      <div class="row">
+        <div class="form-group col-md-11 mx-auto mb-5">
+          <label for="exampleTextarea">Comments:</label>
+          <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="endorsement.comments" name="comments"></textarea>
+        </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
+    <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="endorseSuggestion()">Endorse</button>
+  </div>
+</ng-template>
+<ng-template #viewEndorsementsModal let-c="close">
+  <div class="modal-custom-sm">
+    <div class="modal-header">
+      <h4 class="modal-title">View Endorsements</h4>
+    </div>
+    <div class="modal-body">
+      <div>
+        <ul>
+          <li *ngFor="let endorsement of endorsements">
+            {{ endorsement.name }}
+            {{ endorsement.email }}
+            <p><strong>{{ endorsement.comments }}</strong></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Done</button>
+    </div>
+  </div>
+</ng-template>
