@@ -1,7 +1,7 @@
 <div class="alert alert-success" *ngIf="success">Suggestion Saved Successfully!</div>
 <div class="new-suggestion container text-left">
     <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a><button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus" style="padding-right:5px;"></i> New Suggestion</button>
-    <h1 class="text-center">Endorse A Suggestion</h1>
+    <h1 class="text-center">Endorse a Suggestion</h1>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let suggestion of this.suggestions | async">
       <b>{{suggestion.suggestionText}}</b>
