@@ -11,6 +11,7 @@ export class NewSuggestionComponent {
   public suggestion: any;
   public formErrors: any;
   public emptyTextError = false;
+  public invalidEmail = false;
 
   constructor(private suggestionService: SuggestionService, private router: Router) {
     this.suggestionService = suggestionService;
@@ -25,9 +26,10 @@ export class NewSuggestionComponent {
 
   submitData() {
     this.validateForm();
-    if (!this.emptyTextError) {
+    this.validateEmail();
+    if (!this.emptyTextError && !this.invalidEmail) {
       this.suggestionService.addSuggestion(this.suggestion);
-      this.router.navigate(['./home']);
+      this.router.navigate(['./suggestions', { success: true }]);
     }
   }
 
@@ -41,6 +43,11 @@ export class NewSuggestionComponent {
       }
     }
     this.emptyTextError = false;
+  }
+
+  validateEmail() {
+    const re = /[a-zA-Z]*@reliaslearning.com/;
+    this.invalidEmail = !re.test(this.suggestion.email);
   }
 
   isStringEmpty(string: string): boolean {

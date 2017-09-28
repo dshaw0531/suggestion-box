@@ -1,5 +1,21 @@
+div{
+    font-family: 'Bree Serif', serif;
+    h1{
+        margin-bottom: 20px;
+    }
+    .btn-submit {
+        font-size: 22px;
+        background-color: #257e6b;
+        text-align:center;
+        margin: 0px auto 0px auto;
+        color: white;
+    }
+    .btn-home{
+        color: #00a7a6;
+    }
+}
 input, textarea {
-    &.ng-invalid {
+    &.ng-invalid.ng-touched {
     border-left: 5px solid #a94442; /* red */
   }
   &.ng-valid[required] {
