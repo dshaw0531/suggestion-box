@@ -17,6 +17,7 @@ export class SuggestionsComponent implements OnInit {
   public success = false;
   public invalidEmail = false;
   public endorsement: any;
+  public endorsements: any[];
   public duplicateEndorsement = false;
   public searchText: any;
   openModalRef: NgbModalRef;
@@ -55,11 +56,7 @@ export class SuggestionsComponent implements OnInit {
   }
 
   openViewEndorsementsModal(endorseItem: any): void {
-    this.endorsement.name = '';
-    this.endorsement.email = '';
-    this.duplicateEndorsement = false;
-    this.invalidEmail = false;
-    this.currentSuggestion = endorseItem;
+    this.endorsements = endorseItem.endorsements;
     this.openModalRef = this.modalService.open(this.viewEndorsementsModal, { windowClass: 'modal-wrapper-sm' });
   }
 
