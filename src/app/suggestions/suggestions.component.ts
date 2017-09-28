@@ -10,6 +10,7 @@ import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SuggestionsComponent implements OnInit {
   @ViewChild('confirmDeleteModal') confirmDeleteModal: ElementRef;
+  @ViewChild('endorseModal') endorseModal: ElementRef;
   public suggestions: any;
   public success = false;
   openModalRef: NgbModalRef;
@@ -29,6 +30,11 @@ export class SuggestionsComponent implements OnInit {
   openDeleteModal(deleteItem: any): void {
     this.currentSuggestion = deleteItem;
     this.openModalRef = this.modalService.open(this.confirmDeleteModal, { windowClass: 'modal-wrapper-sm' });
+  }
+
+  openEndorseModal(endorseItem: any): void {
+    this.currentSuggestion = endorseItem;
+    this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
   }
 
   deleteSuggestion(suggestionKey: any) {
