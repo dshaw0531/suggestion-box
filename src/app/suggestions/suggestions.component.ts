@@ -13,6 +13,7 @@ export class SuggestionsComponent implements OnInit {
   @ViewChild('endorseModal') endorseModal: ElementRef;
   public suggestions: any;
   public success = false;
+  public invalidEmail = false;
   public endorsement: any;
   openModalRef: NgbModalRef;
   currentSuggestion: any;
@@ -52,7 +53,15 @@ export class SuggestionsComponent implements OnInit {
       this.currentSuggestion.endorsements = new Array();
     }
 
-    this.currentSuggestion.endorsements.push(this.endorsement);
-    this.suggestionService.endorseSuggestion(this.currentSuggestion);
+    if (!this.invalidEmail) {
+      this.currentSuggestion.endorsements.push(this.endorsement);
+      this.suggestionService.endorseSuggestion(this.currentSuggestion);
+      this.openModalRef.close();
+    }
+  }
+
+  validateEmail() {
+    const re = /[a-zA-Z]*@reliaslearning.com/;
+    this.invalidEmail = !re.test(this.endorsement.email);
   }
 }
