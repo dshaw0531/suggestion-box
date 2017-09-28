@@ -31,6 +31,7 @@
         <label for="exampleTextarea">My email is:</label>
         <input type="text" class="form-control" id="exampleTextarea" rows="3" 
         [(ngModel)]="suggestion.email" name="email" required/>
+        <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
       </div>
     </div>
     <div class="row">
