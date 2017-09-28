@@ -60,11 +60,7 @@ export class SuggestionsComponent implements OnInit {
       if (!this.currentSuggestion.endorsements) {
         this.currentSuggestion.endorsements = new Array();
       } else {
-        this.currentSuggestion.endorsements.forEach(element => {
-          if (element.email === this.endorsement.email) {
-            this.duplicateEndorsement = true;
-          }
-        });
+        this.duplicateEndorsement = !!this.currentSuggestion.endorsements.find(e => e.email === this.endorsement.email);
       }
     }
 
