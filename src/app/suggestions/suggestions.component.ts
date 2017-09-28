@@ -13,12 +13,18 @@ export class SuggestionsComponent implements OnInit {
   @ViewChild('endorseModal') endorseModal: ElementRef;
   public suggestions: any;
   public success = false;
+  public endorsement: any;
   openModalRef: NgbModalRef;
   currentSuggestion: any;
 
   constructor(private suggestionService: SuggestionService, public modalService: NgbModal, private route: ActivatedRoute) {
     this.suggestionService = suggestionService;
     this.suggestions = {};
+    this.endorsement = {
+      name: '',
+      email: ''
+    };
+
     this.route = route;
    }
 
