@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 export class AppComponent {
   title = 'app';
   items: FirebaseListObservable<any[]>;
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
   }
 
   logout() {
