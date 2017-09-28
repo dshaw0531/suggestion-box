@@ -15,6 +15,7 @@ import { NewSuggestionComponent } from './new-suggestion/new-suggestion.componen
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { SuggestionService } from './shared/suggestion.service';
 import { OrderByPipe } from './shared/order-by.pipe';
+import { SearchTextPipe } from './shared/search-text.pipe';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     HomeComponent,
     NewSuggestionComponent,
     SuggestionsComponent,
-    OrderByPipe
+    OrderByPipe,
+    SearchTextPipe
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ div{
     font-family: 'Bree Serif', serif;
     h1{
         margin-bottom: 20px;
-        margin-left: 20px;
     }
     .btn-home{
         color: #00a7a6;
@@ -20,5 +19,8 @@ div{
         color: #F4F5F1;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;   
+    }
+    #searchBox {
+        border-radius: 5px;
     }
 }

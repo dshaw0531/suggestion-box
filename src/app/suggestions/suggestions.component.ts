@@ -16,6 +16,7 @@ export class SuggestionsComponent implements OnInit {
   public invalidEmail = false;
   public endorsement: any;
   public duplicateEndorsement = false;
+  public searchText: any;
   openModalRef: NgbModalRef;
   currentSuggestion: any;
 

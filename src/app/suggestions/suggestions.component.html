@@ -1,9 +1,22 @@
 <div class="alert alert-success" *ngIf="success">Suggestion Saved Successfully!</div>
 <div class="new-suggestion container text-left">
-    <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a><button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus" style="padding-right:5px;"></i> New Suggestion</button>
-    <h1 class="text-center">Endorse a Suggestion</h1>
+  <div class="row">
+    <div class="col-md-9">
+      <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a>
+    </div>
+    <div class="col-md-3">
+      <button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus"></i> New Suggestion</button>
+    </div>
+  </div>
+  <div class="row" style="margin-top:1%;">
+    <div class="col-md-3"></div>
+    <h1 class="text-center col-md-6">Endorse A Suggestion</h1>
+    <div class="col-md-3" style="margin-top: 1%;">
+      <label>Search:</label><input [(ngModel)]="searchText" id="searchBox" type="text" style="float:right;">
+    </div>
+  </div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let suggestion of suggestions | orderBy | async ">
+    <li class="list-group-item" *ngFor="let suggestion of suggestions | orderBy | async | searchText:searchText">
       <b>{{suggestion.suggestionText}}</b>
       <p><font size="2pt"><i>{{suggestion.details}}</i></font></p>
       <p><font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
