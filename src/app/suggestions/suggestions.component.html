@@ -1,11 +1,11 @@
 <div class="alert alert-success" *ngIf="success">Suggestion Saved Successfully!</div>
 <div class="new-suggestion container text-left">
-    <a class="btn" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a><button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus" style="padding-right:5px;"></i> New Suggestion</button>
+    <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a><button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus" style="padding-right:5px;"></i> New Suggestion</button>
     <h1 class="text-center">Endorse A Suggestion</h1>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let suggestion of this.suggestions | async">
-      <p>Suggestion: {{suggestion.suggestionText}}</p>
-      <p>Details: {{suggestion.details}}</p>
+      <b>{{suggestion.suggestionText}}</b>
+      <p><i>{{suggestion.details}}</i></p>
       <p>Submitter: {{suggestion.name}}</p>
       <p>Submitter's Email Address: {{suggestion.email}}</p>
       <button title="Endorse" (click)="openEndorseModal(suggestion)"><span class="fa fa-heart"></span></button>
