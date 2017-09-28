@@ -7,7 +7,7 @@
       <p>Suggestion: {{suggestion.suggestionText}}</p>
       <p>Details: {{suggestion.details}}</p>
       <p>Submitter: {{suggestion.name}}</p>
-      <p>Submitter's Email Address: {{suggestion.email}}</p>
+      <p>Submitter's Email Address: {{suggestion.email}}</p>{{suggestion.endorsements ? suggestion.endorsements.length : 0}}
       <button title="Endorse" (click)="openEndorseModal(suggestion)"><span class="fa fa-heart"></span></button>
       <button title="Delete" (click)="openDeleteModal(suggestion)"><span class="fa fa-trash"></span></button>
     </li>
