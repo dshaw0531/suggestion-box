@@ -6,4 +6,18 @@ div{
     .btn-home{
         color: #00a7a6;
     }
+    .btn.btn-sm.btn-modal-primary{
+        background-color: #00a7a6;
+        color: white;
+    }
+    .btn-sm.btn-modal-secondary{
+        background-color: #888d90;
+        color: white;
+    }
+    .modal-header{
+        background-color: #888d90;
+        color: #F4F5F1;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;   
+    }
 }
