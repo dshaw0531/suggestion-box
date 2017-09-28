@@ -13,6 +13,7 @@ export class SuggestionsComponent implements OnInit {
   @ViewChild('endorseModal') endorseModal: ElementRef;
   public suggestions: any;
   public success = false;
+  public invalidEmail = false;
   public endorsement: any;
   public duplicateEndorsement = false;
   openModalRef: NgbModalRef;
@@ -42,6 +43,8 @@ export class SuggestionsComponent implements OnInit {
   openEndorseModal(endorseItem: any): void {
     this.endorsement.name = '';
     this.endorsement.email = '';
+    this.duplicateEndorsement = false;
+    this.invalidEmail = false;
     this.currentSuggestion = endorseItem;
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
   }
@@ -51,20 +54,31 @@ export class SuggestionsComponent implements OnInit {
   }
 
   endorseSuggestion() {
-    this.duplicateEndorsement = false;
-    if (!this.currentSuggestion.endorsements) {
-      this.currentSuggestion.endorsements = new Array();
+    if (this.currentSuggestion.email === this.endorsement.email) {
+      this.duplicateEndorsement = true;
     } else {
-      this.currentSuggestion.endorsements.forEach(element => {
-        if (element.email === this.endorsement.email) {
-          this.duplicateEndorsement = true;
-        }
-      });
+      if (!this.currentSuggestion.endorsements) {
+        this.currentSuggestion.endorsements = new Array();
+      } else {
+        this.currentSuggestion.endorsements.forEach(element => {
+          if (element.email === this.endorsement.email) {
+            this.duplicateEndorsement = true;
+          }
+        });
+      }
     }
 
-    if (!this.duplicateEndorsement) {
+    this.validateEmail();
+
+    if (!this.duplicateEndorsement && !this.invalidEmail) {
       this.currentSuggestion.endorsements.push(this.endorsement);
       this.suggestionService.endorseSuggestion(this.currentSuggestion);
+      this.openModalRef.close();
     }
+  }
+
+  validateEmail() {
+    const re = /[a-zA-Z]*@reliaslearning.com/;
+    this.invalidEmail = !re.test(this.endorsement.email);
   }
 }
