@@ -1,33 +1,41 @@
 <div class="new-suggestion container text-left">
-  <a class="btn" class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back to Home</a>
+  <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back to Home</a>
   <h1 class="text-center">Add a Suggestion</h1>
+  <h1 class="alert alert-danger" *ngIf="emptyTextError">all input fields must have a value</h1>
   <form>
     <div class="row">
       <div class="form-group col-md-7 mx-auto mb-5">
         <label for="exampleTextarea">My suggestion is:</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        <textarea class="form-control" id="exampleTextarea" rows="3" 
+        [(ngModel)]="suggestion.suggestionText" name="suggestion-text" required>
+        </textarea>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-7 mx-auto mb-5">
         <label for="exampleTextarea">Details and who my suggestion would benefit:</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        <textarea class="form-control" id="exampleTextarea" rows="3"
+        [(ngModel)]="suggestion.details" name="suggestion-details" required>
+        </textarea>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-7 mx-auto mb-5">
         <label for="exampleTextarea">My name is:</label>
-        <input type="text" class="form-control" id="exampleTextarea" rows="3" />
+        <input type="text" class="form-control" id="exampleTextarea" rows="3" 
+        [(ngModel)]="suggestion.name" name="name" required/>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-7 mx-auto mb-5">
         <label for="exampleTextarea">My email is:</label>
-        <input type="text" class="form-control" id="exampleTextarea" rows="3" />
+        <input type="text" class="form-control" id="exampleTextarea" rows="3" 
+        [(ngModel)]="suggestion.email" name="email" required/>
+        <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
       </div>
     </div>
     <div class="row">
-      <button type="submit" class="btn btn-submit">Submit</button>
+      <button (click)="submitData()" class="btn btn-submit">Submit</button>
     </div>
   </form>
 </div>
