@@ -53,6 +53,7 @@ export class SuggestionsComponent implements OnInit {
 
   endorseSuggestion() {
     this.duplicateEndorsement = false;
+    this.invalidEmail = false;
 
     if (!this.currentSuggestion.endorsements) {
       this.currentSuggestion.endorsements = new Array();
