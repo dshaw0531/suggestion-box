@@ -14,6 +14,7 @@ export class SuggestionsComponent implements OnInit {
   public suggestions: any;
   public success = false;
   public invalidEmail = false;
+  public nameEmpty = false;
   public endorsement: any;
   public duplicateEndorsement = false;
   public searchText: any;
@@ -46,6 +47,7 @@ export class SuggestionsComponent implements OnInit {
     this.endorsement.email = '';
     this.duplicateEndorsement = false;
     this.invalidEmail = false;
+    this.nameEmpty = false;
     this.currentSuggestion = endorseItem;
     this.openModalRef = this.modalService.open(this.endorseModal, { windowClass: 'modal-wrapper-sm' });
   }
@@ -66,12 +68,17 @@ export class SuggestionsComponent implements OnInit {
     }
 
     this.validateEmail();
+    this.validateName();
 
-    if (!this.duplicateEndorsement && !this.invalidEmail) {
+    if (!this.duplicateEndorsement && !this.invalidEmail && !this.nameEmpty) {
       this.currentSuggestion.endorsements.push(this.endorsement);
       this.suggestionService.endorseSuggestion(this.currentSuggestion);
       this.openModalRef.close();
     }
+  }
+
+  validateName() {
+    this.nameEmpty = !this.endorsement.name.replace(/\s/g, '').length;
   }
 
   validateEmail() {
