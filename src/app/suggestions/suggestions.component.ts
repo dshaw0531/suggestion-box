@@ -8,7 +8,7 @@ import { SuggestionService } from '../shared/suggestion.service';
 })
 export class SuggestionsComponent implements OnInit {
 
-  private suggestions: any;
+  public suggestions: any;
   constructor(private suggestionService: SuggestionService) {
     this.suggestionService = suggestionService;
     this.suggestions = {};
