@@ -55,14 +55,18 @@ export class SuggestionsComponent implements OnInit {
     this.duplicateEndorsement = false;
     this.invalidEmail = false;
 
-    if (!this.currentSuggestion.endorsements) {
-      this.currentSuggestion.endorsements = new Array();
+    if (this.currentSuggestion.email === this.endorsement.email) {
+      this.duplicateEndorsement = true;
     } else {
-      this.currentSuggestion.endorsements.forEach(element => {
-        if (element.email === this.endorsement.email) {
-          this.duplicateEndorsement = true;
-        }
-      });
+      if (!this.currentSuggestion.endorsements) {
+        this.currentSuggestion.endorsements = new Array();
+      } else {
+        this.currentSuggestion.endorsements.forEach(element => {
+          if (element.email === this.endorsement.email) {
+            this.duplicateEndorsement = true;
+          }
+        });
+      }
     }
 
     this.validateEmail();
