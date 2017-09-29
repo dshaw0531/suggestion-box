@@ -1,11 +1,12 @@
 <div class="alert alert-success" *ngIf="success">Suggestion Saved Successfully!</div>
 <div class="new-suggestion container text-left">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-6">
       <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a>
     </div>
-    <div class="col-md-3">
-      <button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus"></i> New Suggestion</button>
+    <div class="col-md-6">
+      <button routerLink="../resolved-suggestions" class="btn btn-info new" style="float:right;"><i class="fa fa-check-circle-o" style="padding-left:5px;"></i> Resolved Suggestions</button>
+      <button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;margin-right:1%;"><i class="fa fa-plus"></i> New Suggestion</button>
     </div>
   </div>
   <div class="row" style="margin-top:1%;">
@@ -56,23 +57,21 @@
     <div class="alert alert-danger" *ngIf="duplicateEndorsement">
       You can't endorse a suggestion twice
     </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="form-group col-md-11 mx-auto mb-5">
-            <label for="exampleTextarea">My name is:</label>
-            <input type="text" class="form-control" id="exampleTextarea" rows="3" 
-            [(ngModel)]="endorsement.name" name="name" required/>
-            <div class="alert alert-danger" *ngIf="nameEmpty">Name must be filled in</div>            
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-11 mx-auto mb-5">
-              <label for="exampleTextarea">My email is:</label>
-              <input type="text" class="form-control" id="exampleTextarea" rows="3" 
-              [(ngModel)]="endorsement.email" name="email" required/>
-              <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
-            </div>
-          </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-11 mx-auto mb-5">
+          <label for="exampleTextarea">My name is:</label>
+          <input type="text" class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="endorsement.name" name="name" required/>
+          <div class="alert alert-danger" *ngIf="nameEmpty">Name must be filled in</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-11 mx-auto mb-5">
+          <label for="exampleTextarea">My email is:</label>
+          <input type="text" class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="endorsement.email" name="email" required/>
+          <div class="alert alert-danger" *ngIf="invalidEmail">Email must be valid and end in @reliaslearning.com</div>
+        </div>
+      </div>
       <div class="row">
         <div class="form-group col-md-11 mx-auto mb-5">
           <label for="exampleTextarea">Comments:</label>
@@ -108,31 +107,30 @@
   </div>
 </ng-template>
 <ng-template #resolveModal let-c="close" class="modal-custom-sm">
-    <div>
-      <div class="modal-header">
-        <h4 class="modal-title">Resolve</h4>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title">Resolve</h4>
+    </div>
+    <div class="alert alert-danger" *ngIf="resolutionFieldsEmpty">
+      All fields required
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-group col-md-11 mx-auto mb-5">
+          <label for="exampleTextarea">My name is:</label>
+          <input type="text" class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="resolverName" name="resolverName" required/>
+        </div>
       </div>
-      <div class="alert alert-danger" *ngIf="resolutionFieldsEmpty">
-        All fields required
-      </div>
-        <div class="modal-body">
-            <div class="row">
-              <div class="form-group col-md-11 mx-auto mb-5">
-                <label for="exampleTextarea">My name is:</label>
-                <input type="text" class="form-control" id="exampleTextarea" rows="3" 
-                [(ngModel)]="resolverName" name="resolverName" required/>
-              </div>
-            </div>
-        <div class="row">
-          <div class="form-group col-md-11 mx-auto mb-5">
-            <label for="exampleTextarea">Resolution Comments:</label>
-            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="resolutionComments" name="resolutionComments"></textarea>
-          </div>
+      <div class="row">
+        <div class="form-group col-md-11 mx-auto mb-5">
+          <label for="exampleTextarea">Resolution Comments:</label>
+          <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="resolutionComments" name="resolutionComments"></textarea>
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
-      <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="resolveSuggestion()">Resolve</button>
-    </div>
-  </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
+    <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="resolveSuggestion()">Resolve</button>
+  </div>
+</ng-template>

@@ -29,7 +29,7 @@ export class SuggestionsComponent implements OnInit {
   currentSuggestion: any;
 
   constructor(private suggestionService: SuggestionService, public modalService: NgbModal,
-      private route: ActivatedRoute, private authService: AuthService) {
+    private route: ActivatedRoute, private authService: AuthService) {
     this.suggestionService = suggestionService;
     this.suggestions = {};
     this.endorsement = {
@@ -39,7 +39,7 @@ export class SuggestionsComponent implements OnInit {
     };
 
     this.route = route;
-   }
+  }
 
   ngOnInit() {
     this.suggestions = this.suggestionService.getSuggestions();

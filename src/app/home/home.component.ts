@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   public email: string;
   public password: string;
 
-  constructor(public authService: AuthService, public modalService: NgbModal, public router: Router) {}
+  constructor(public authService: AuthService, public modalService: NgbModal, public router: Router) { }
 
   openLoginModal(): void {
     this.loginFailed = false;
