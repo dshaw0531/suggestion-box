@@ -1,0 +1,55 @@
+<div class="resolved-suggestions container text-left">
+  <div class="row">
+    <div class="col-md-9">
+      <a class="btn btn-home" routerLink="./home"><i class="fa fa-arrow-circle-left"></i> Back To Home</a>
+    </div>
+    <div class="col-md-3">
+      <button routerLink="../new-suggestion" class="btn btn-info new" style="float:right;"><i class="fa fa-plus"></i> New Suggestion</button>
+    </div>
+  </div>
+  <div class="row" style="margin-top:1%;">
+    <div class="col-md-3"></div>
+    <h1 class="text-center col-md-6">Resolved Suggestions</h1>
+    <div class="col-md-3" style="margin-top: 1%;">
+      <label>Search:</label><input [(ngModel)]="searchText" id="searchBox" type="text" style="float:right;">
+    </div>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let suggestion of suggestions | orderBy | async | searchText:searchText | resolved:true">
+      <b>{{suggestion.suggestionText}}</b>
+      <p>
+        <font size="2pt"><i>{{suggestion.details}}</i></font>
+      </p>
+      <p>
+        <font size="2pt">Submitter: {{suggestion.name}}<i> ({{suggestion.email}})</i></font>
+        <br>
+        <font size="2pt"><b>Resolved By:</b> {{suggestion.resolverName}}
+          <br>{{suggestion.resolutionComments}}
+        </font>
+        <button *ngIf="authService.user | async" title="View Endorsements" (click)="openViewEndorsementsModal(suggestion)" style="float:right;"><span class="fa fa-eye"></span></button>
+        <label title="Endorsements" style="float:right; margin-right:5pt;"><span class="fa fa-heart" style="color:#00a7a6"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</label>
+      </p>
+    </li>
+  </ul>
+</div>
+<ng-template #viewEndorsementsModal let-c="close">
+  <div class="modal-custom-sm">
+    <div class="modal-header">
+      <h4 class="modal-title">View Endorsements</h4>
+    </div>
+    <div class="modal-body">
+      <div>
+        <ul>
+          <li *ngFor="let endorsement of endorsements">
+            <strong>{{ endorsement.name }}</strong>
+            <i>({{ endorsement.email }})</i>
+            <p>{{ endorsement.comments }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Done</button>
+    </div>
+  </div>
+</ng-template>

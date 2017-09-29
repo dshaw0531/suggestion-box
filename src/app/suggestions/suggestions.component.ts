@@ -13,6 +13,7 @@ export class SuggestionsComponent implements OnInit {
   @ViewChild('confirmDeleteModal') confirmDeleteModal: ElementRef;
   @ViewChild('endorseModal') endorseModal: ElementRef;
   @ViewChild('viewEndorsementsModal') viewEndorsementsModal: ElementRef;
+  @ViewChild('resolveModal') resolveModal: ElementRef;
   public suggestions: any;
   public success = false;
   public invalidEmail = false;
@@ -21,6 +22,9 @@ export class SuggestionsComponent implements OnInit {
   public endorsements: any[];
   public duplicateEndorsement = false;
   public searchText: any;
+  public resolutionComments: string;
+  public resolutionFieldsEmpty = false;
+  public resolverName: string;
   openModalRef: NgbModalRef;
   currentSuggestion: any;
 
@@ -45,6 +49,13 @@ export class SuggestionsComponent implements OnInit {
   openDeleteModal(deleteItem: any): void {
     this.currentSuggestion = deleteItem;
     this.openModalRef = this.modalService.open(this.confirmDeleteModal, { windowClass: 'modal-wrapper-sm' });
+  }
+
+  openResolveModal(resolveItem: any): void {
+    this.resolutionComments = this.resolverName = '';
+    this.resolutionFieldsEmpty = false;
+    this.currentSuggestion = resolveItem;
+    this.openModalRef = this.modalService.open(this.resolveModal, { windowClass: 'modal-wrapper-sm' });
   }
 
   openEndorseModal(endorseItem: any): void {
@@ -83,7 +94,20 @@ export class SuggestionsComponent implements OnInit {
 
     if (!this.duplicateEndorsement && !this.invalidEmail && !this.nameEmpty) {
       this.currentSuggestion.endorsements.push(this.endorsement);
-      this.suggestionService.endorseSuggestion(this.currentSuggestion);
+      this.suggestionService.updateSuggestion(this.currentSuggestion);
+      this.openModalRef.close();
+    }
+  }
+
+  resolveSuggestion() {
+    if (!this.resolutionComments && !this.resolverName) {
+      this.resolutionFieldsEmpty = true;
+    }
+
+    if (!this.resolutionFieldsEmpty) {
+      this.currentSuggestion.resolutionComments = this.resolutionComments;
+      this.currentSuggestion.resolverName = this.resolverName;
+      this.suggestionService.updateSuggestion(this.currentSuggestion);
       this.openModalRef.close();
     }
   }

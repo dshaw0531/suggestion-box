@@ -16,7 +16,7 @@
     </div>
   </div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let suggestion of suggestions | orderBy | async | searchText:searchText">
+    <li class="list-group-item" *ngFor="let suggestion of suggestions | orderBy | async | searchText:searchText | resolved:false">
       <b>{{suggestion.suggestionText}}</b>
       <p>
         <font size="2pt"><i>{{suggestion.details}}</i></font>
@@ -26,6 +26,7 @@
         <button *ngIf="authService.user | async" title="Delete" (click)="openDeleteModal(suggestion)" style="float:right;"><span class="fa fa-trash"></span></button>
         <button title="Endorse" (click)="openEndorseModal(suggestion)" style="float:right; margin-right:5pt;"><span class="fa fa-heart" style="color:#00a7a6"></span> {{suggestion.endorsements ? suggestion.endorsements.length : 0}}</button>
         <button *ngIf="authService.user | async" title="View Endorsements" (click)="openViewEndorsementsModal(suggestion)" style="float:right;"><span class="fa fa-eye"></span></button>
+        <button *ngIf="authService.user | async" title="Mark Resolved" (click)="openResolveModal(suggestion)" style="float:right;margin-right:5pt;"><span class="fa fa-check-circle-o"></span></button>
       </p>
     </li>
   </ul>
@@ -105,3 +106,32 @@
     </div>
   </div>
 </ng-template>
+<ng-template #resolveModal let-c="close" class="modal-custom-sm">
+    <div>
+      <div class="modal-header">
+        <h4 class="modal-title">Resolve</h4>
+      </div>
+      <div class="alert alert-danger" *ngIf="resolutionFieldsEmpty">
+        All fields required
+      </div>
+        <div class="modal-body">
+            <div class="row">
+              <div class="form-group col-md-11 mx-auto mb-5">
+                <label for="exampleTextarea">My name is:</label>
+                <input type="text" class="form-control" id="exampleTextarea" rows="3" 
+                [(ngModel)]="resolverName" name="resolverName" required/>
+              </div>
+            </div>
+        <div class="row">
+          <div class="form-group col-md-11 mx-auto mb-5">
+            <label for="exampleTextarea">Resolution Comments:</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)]="resolutionComments" name="resolutionComments"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" name="cancelButton" class="btn btn-sm btn-modal-secondary" (click)="c()">Cancel</button>
+      <button type="button" name="endorseButton" class="btn btn-sm btn-modal-primary" (click)="resolveSuggestion()">Resolve</button>
+    </div>
+  </ng-template>

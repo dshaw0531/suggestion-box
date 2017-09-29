@@ -21,7 +21,7 @@ export class SuggestionService {
     this.suggestions.remove(suggestionKey);
   }
 
-  endorseSuggestion(suggestion: any) {
+  updateSuggestion(suggestion: any) {
     this.suggestions.update(suggestion.$key, suggestion);
   }
 }

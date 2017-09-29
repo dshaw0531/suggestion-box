@@ -17,10 +17,13 @@ import { SuggestionService } from './shared/suggestion.service';
 import { OrderByPipe } from './shared/order-by.pipe';
 import { SearchTextPipe } from './shared/search-text.pipe';
 import { AuthService } from './auth.service';
+import { ResolvedPipe } from './shared/resolved.pipe';
+import { ResolvedSuggestionsComponent } from './resolved-suggestions/resolved-suggestions.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'new-suggestion', component: NewSuggestionComponent },
+  { path: 'resolved-suggestions', component: ResolvedSuggestionsComponent },
   { path: 'suggestions', component: SuggestionsComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
@@ -32,7 +35,9 @@ const appRoutes: Routes = [
     NewSuggestionComponent,
     SuggestionsComponent,
     OrderByPipe,
-    SearchTextPipe
+    SearchTextPipe,
+    ResolvedPipe,
+    ResolvedSuggestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,7 @@ const appRoutes: Routes = [
       appRoutes
     ),
     FormsModule,
-    AngularFireAuthModule  // May use later - imports firebase/auth, only needed for auth features
+    AngularFireAuthModule
   ],
   providers: [
     SuggestionService,
