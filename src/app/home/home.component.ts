@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
 
   openLoginModal(): void {
     this.loginFailed = false;
+    this.email = '';
+    this.password = '';
     this.openModalRef = this.modalService.open(this.loginModal, { windowClass: 'modal-wrapper-sm' });
   }
 
@@ -28,6 +30,10 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
+    if (this.email === '' || this.password === '') {
+      this.loginFailed = true;
+      return;
+    }
     this.authService.login(this.email, this.password)
       .then(value => {
         this.email = this.password = '';
