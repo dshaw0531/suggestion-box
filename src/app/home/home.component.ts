@@ -18,6 +18,9 @@ export class HomeComponent implements OnInit {
   constructor(public authService: AuthService, public modalService: NgbModal, public router: Router) {}
 
   openLoginModal(): void {
+    this.loginFailed = false;
+    this.email = '';
+    this.password = '';
     this.openModalRef = this.modalService.open(this.loginModal, { windowClass: 'modal-wrapper-sm' });
   }
 
@@ -27,16 +30,19 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.email, this.password);
-    this.authService.user.subscribe(u => {
-      if (u) {
+    if (this.email === '' || this.password === '') {
+      this.loginFailed = true;
+      return;
+    }
+    this.authService.login(this.email, this.password)
+      .then(value => {
         this.email = this.password = '';
         this.openModalRef.close();
         this.router.navigate(['./suggestions']);
-      } else {
+        this.loginFailed = false;
+      }, error => {
         this.loginFailed = true;
-      }
-    });
+      });
   }
 
   logout() {
