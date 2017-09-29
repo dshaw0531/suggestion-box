@@ -100,8 +100,10 @@ export class SuggestionsComponent implements OnInit {
   }
 
   resolveSuggestion() {
-    if (!this.resolutionComments && !this.resolverName) {
+    if (!this.resolutionComments || !this.resolverName) {
       this.resolutionFieldsEmpty = true;
+    } else {
+      this.resolutionFieldsEmpty = false;
     }
 
     if (!this.resolutionFieldsEmpty) {
